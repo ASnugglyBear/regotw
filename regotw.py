@@ -99,7 +99,7 @@ Below is [the original Game of the Week post](/{}) from {}:
     repost_text = repost_header + m.group(1).encode('utf-8')
     log.debug('Reposting this GOTW text:\n{}'.format(repost_text))
 
-    title = 'Game of the From Two Years Ago This Week: {}'.format(game[1])
+    title = 'Game of the Week, Redux: {}'.format(game[1])
     repost = reddit.submit(subreddit, title, text=repost_text)
     repost.distinguish(as_made_by='mod')
 
