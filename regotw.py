@@ -60,7 +60,7 @@ if __name__ == '__main__':
             break
         else:
             log.debug(u'no GOTW from two years ago. Next GOTW repost is {} on {}'.format(
-                game[1], game[2]))
+                game[1], game[0]))
             exit(0)
 
     gotw_post = reddit.get_submission(submission_id=game[2], comment_limit=0)
