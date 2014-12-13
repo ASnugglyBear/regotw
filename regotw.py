@@ -4,6 +4,7 @@ from sys import exit, argv
 from datetime import date
 import logging
 import argparse
+import html
 
 log = logging.getLogger('regotw')
 logging.basicConfig(level=logging.DEBUG)
@@ -21,8 +22,9 @@ if __name__ == '__main__':
     # get user/pass from ambiant praw.ini
     reddit.login()
     
-    gotw = reddit.get_wiki_page(subreddit=subreddit, page=wiki_page)
-    matches = re.findall(u'(\d{4}-\d{2}-\d{2}) : \[([^\]]+)\]\(/(\w+)\)', gotw.content_md)
+    gotw_page = reddit.get_wiki_page(subreddit=subreddit, page=wiki_page)
+    gotw_text = html.unescape(gotw_page.content_md)
+    matches = re.findall(u'(\d{4}-\d{2}-\d{2}) : \[([^\]]+)\]\(/(\w+)\)', gotw_text)
     if not matches:
         log.critical(u'Unable to find GOTW links in wiki page {}'.format(wiki_page))
         exit(1)
